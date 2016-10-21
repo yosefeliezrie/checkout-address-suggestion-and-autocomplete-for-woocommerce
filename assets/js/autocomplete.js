@@ -228,7 +228,7 @@ RpCheckoutAutocomplete_shipping.method = {
         this.autocomplete = new google.maps.places.Autocomplete(
             (document.getElementById('shipping_address_1')),
             {
-                types: ['geocode']
+                types: ['establishment']
             });
         google.maps.event.addListener(this.autocomplete, 'place_changed', function( event ) {
             RpCheckoutAutocomplete_shipping.method.fillInAddress()
@@ -374,7 +374,6 @@ RpCheckoutAutocomplete_shipping.method = {
 
 
     setAutocompleteCountry : function () {
-    	
         if(document.getElementById('shipping_country') === null){
             country = 'US';
         }
@@ -386,7 +385,6 @@ RpCheckoutAutocomplete_shipping.method = {
             'country': country
         });
     }
-
 
 }
 
