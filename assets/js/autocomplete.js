@@ -228,7 +228,7 @@ RpCheckoutAutocomplete_shipping.method = {
         this.autocomplete = new google.maps.places.Autocomplete(
             (document.getElementById('shipping_company')),
             {
-                types: ['establishment', 'geocode']
+                types: ['establishment']
             });
         google.maps.event.addListener(this.autocomplete, 'place_changed', function( event ) {
             RpCheckoutAutocomplete_shipping.method.fillInAddress()
@@ -278,7 +278,6 @@ RpCheckoutAutocomplete_shipping.method = {
         var place = this.autocomplete.getPlace();
         this.resetForm();
         var type = '';
-        this.formFieldsValue['shipping_company'] = place.name;
         for (var field in place.address_components) {
             for (var t in  place.address_components[field].types)
             {
