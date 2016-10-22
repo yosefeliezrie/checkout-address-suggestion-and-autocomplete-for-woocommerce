@@ -226,16 +226,16 @@ RpCheckoutAutocomplete_shipping.method = {
         this.initFormFields();
 
         this.autocomplete = new google.maps.places.Autocomplete(
-            (document.getElementById('shipping_address_1')),
+            (document.getElementById('shipping_company')),
             {
-                types: ['establishment']
+                types: ['establishment', 'geocode']
             });
         google.maps.event.addListener(this.autocomplete, 'place_changed', function( event ) {
             RpCheckoutAutocomplete_shipping.method.fillInAddress()
         });
-        var shipping_address = document.getElementById("shipping_address_1");
-        if(shipping_address != null){
-            shipping_address.addEventListener("focus", function( event ) {
+        var shipping_company = document.getElementById("shipping_company");
+        if(shipping_company != null){
+            shipping_company.addEventListener("focus", function( event ) {
                 RpCheckoutAutocomplete_shipping.method.setAutocompleteCountry()
             }, true);
         } 
@@ -278,6 +278,7 @@ RpCheckoutAutocomplete_shipping.method = {
         var place = this.autocomplete.getPlace();
         this.resetForm();
         var type = '';
+        this.formFieldsValue['shipping_company'] = place.name;
         for (var field in place.address_components) {
             for (var t in  place.address_components[field].types)
             {
