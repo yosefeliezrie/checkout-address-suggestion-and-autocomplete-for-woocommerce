@@ -204,6 +204,7 @@ RpCheckoutAutocomplete_shipping.method = {
     autocomplete : "",
     streetNumber : "",
     formFields : {
+        'shipping_company': '',
         'shipping_address_1': '',
         'shipping_address_2': '',
         'shipping_city': '',
@@ -212,6 +213,7 @@ RpCheckoutAutocomplete_shipping.method = {
         'shipping_country' : ''
     },
     formFieldsValue : {
+        'shipping_company': '',
         'shipping_address_1': '',
         'shipping_address_2': '',
         'shipping_city': '',
@@ -228,7 +230,7 @@ RpCheckoutAutocomplete_shipping.method = {
         this.autocomplete = new google.maps.places.Autocomplete(
             (document.getElementById('shipping_company')),
             {
-                types: ['establishment']
+                types: ['establishment', 'geocode']
             });
         google.maps.event.addListener(this.autocomplete, 'place_changed', function( event ) {
             RpCheckoutAutocomplete_shipping.method.fillInAddress()
@@ -238,7 +240,14 @@ RpCheckoutAutocomplete_shipping.method = {
             shipping_company.addEventListener("focus", function( event ) {
                 RpCheckoutAutocomplete_shipping.method.setAutocompleteCountry()
             }, true);
-        } 
+        }
+
+        var shipping_address = document.getElementById("shipping_address_1");
+        if(shipping_address != null){
+            shipping_address.addEventListener("focus", function( event ) {
+                RpCheckoutAutocomplete_shipping.method.setAutocompleteCountry()
+            }, true);
+        }
 
         var shipping_country = document.getElementById("shipping_country");
         if(shipping_country != null){
@@ -250,7 +259,7 @@ RpCheckoutAutocomplete_shipping.method = {
 
     },
     getIdSeparator : function() {
-        if (!document.getElementById('shipping_address_1')) {
+        if (!document.getElementById('shipping_company')) {
             this.IdSeparator = "_";
             return "_";
         }
@@ -278,6 +287,7 @@ RpCheckoutAutocomplete_shipping.method = {
         var place = this.autocomplete.getPlace();
         this.resetForm();
         var type = '';
+        this.formFieldsValue['shipping_company'] = place.name;
         for (var field in place.address_components) {
             for (var t in  place.address_components[field].types)
             {
