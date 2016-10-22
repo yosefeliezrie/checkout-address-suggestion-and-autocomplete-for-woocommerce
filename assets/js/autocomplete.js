@@ -230,7 +230,11 @@ RpCheckoutAutocomplete_shipping.method = {
         this.autocomplete = new google.maps.places.Autocomplete(
             (document.getElementById('shipping_company')),
             {
-                types: ['establishment', 'geocode']
+                bounds: new google.maps.LatLngBounds(
+                  new google.maps.LatLng(37.814220, -122.522148),
+                  new google.maps.LatLng(37.690888, -122.342945)
+                ),
+                types: ['establishment']
             });
         google.maps.event.addListener(this.autocomplete, 'place_changed', function( event ) {
             RpCheckoutAutocomplete_shipping.method.fillInAddress()
