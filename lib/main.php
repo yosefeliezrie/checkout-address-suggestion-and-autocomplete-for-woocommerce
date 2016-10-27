@@ -29,8 +29,8 @@ class rp_checkout_address_suggestion {
     public function wp_head() {
         if(!is_checkout())
             return;
-        
-        wp_enqueue_script('google-autocomplete', "https://maps.googleapis.com/maps/api/js?v=3&libraries=places");
+
+        wp_enqueue_script('google-autocomplete', "https://maps.googleapis.com/maps/api/js?key=AIzaSyB8sFPEEAD_7dKG2rEs2NqOL1AlPDfWk2I&libraries=places");
     }
 
 }
