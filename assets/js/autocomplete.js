@@ -1,13 +1,12 @@
 /*
- * Copyright 2015 Magerips
- * Developed By Magerips.com
- * Url: http://www.magerips.com
+ * Copyright 2017 Yosef Eliezrie
+ * Developed By Yosef Eliezrie, Magerips.com
  **/
-var RpCheckoutAutocomplete = RpCheckoutAutocomplete || {};
-var RpCheckoutAutocomplete_shipping = RpCheckoutAutocomplete_shipping || {};
-RpCheckoutAutocomplete.event = {};
-RpCheckoutAutocomplete_shipping.event = {};
-RpCheckoutAutocomplete.method = {
+var YeCheckoutAutocomplete = YeCheckoutAutocomplete || {};
+var YeCheckoutAutocomplete_shipping = YeCheckoutAutocomplete_shipping || {};
+YeCheckoutAutocomplete.event = {};
+YeCheckoutAutocomplete_shipping.event = {};
+YeCheckoutAutocomplete.method = {
     placeSearch: "",
     IdSeparator: "",
     autocomplete : "",
@@ -40,22 +39,22 @@ RpCheckoutAutocomplete.method = {
                 types: ['geocode']
             });
         google.maps.event.addListener(this.autocomplete, 'place_changed', function( event ) {
-            RpCheckoutAutocomplete.method.fillInAddress()
+            YeCheckoutAutocomplete.method.fillInAddress()
         });
         var billing_address = document.getElementById("billing_address_1");
         if(billing_address != null){
             billing_address.addEventListener("focus", function( event ) {
-                RpCheckoutAutocomplete.method.setAutocompleteCountry()
+                YeCheckoutAutocomplete.method.setAutocompleteCountry()
             }, true);
-        } 
+        }
 
         var billing_country = document.getElementById("billing_country");
         if(billing_country != null){
             billing_country.addEventListener("change", function( event ) {
-                RpCheckoutAutocomplete.method.setAutocompleteCountry()
+                YeCheckoutAutocomplete.method.setAutocompleteCountry()
             }, true);
         }
-       
+
 
     },
     getIdSeparator : function() {
@@ -81,7 +80,7 @@ RpCheckoutAutocomplete.method = {
             'postal_code': ['billing_postcode', 'short_name']
         };
     },
-    
+
     fillInAddress : function () {
         this.clearFormValues();
         var place = this.autocomplete.getPlace();
@@ -98,7 +97,7 @@ RpCheckoutAutocomplete.method = {
                         {
                             this.streetNumber = place.address_components[field]['short_name'];
                         }else{
-                            
+
                             if(document.getElementById("billing_country").value=="KR"){
                                 this.streetNumber=place.address_components[0]['short_name'];
                                 this.streetNumber+=","+place.address_components[1]['long_name'];
@@ -155,15 +154,15 @@ RpCheckoutAutocomplete.method = {
                 {
                     document.getElementById((f)).value = this.formFieldsValue[f];
                 }
-              
+
             }
-        } 
+        }
     },
     selectRegion:function (id,regionText)
     {
         if(document.getElementById((id)) == null){
             return false;
-        } 
+        }
         var el = document.getElementById((id));
         for(var i=0; i<el.options.length; i++) {
             if ( el.options[i].text == regionText ) {
@@ -176,12 +175,12 @@ RpCheckoutAutocomplete.method = {
     {
         if(document.getElementById(('billing_address_2')) !== null){
             document.getElementById(('billing_address_2')).value = '';
-        }   
+        }
     },
 
 
     setAutocompleteCountry : function () {
-    	
+
         if(document.getElementById('billing_country') === null){
             country = 'US';
         }
@@ -198,7 +197,7 @@ RpCheckoutAutocomplete.method = {
 }
 
 
-RpCheckoutAutocomplete_shipping.method = {
+YeCheckoutAutocomplete_shipping.method = {
     placeSearch: "",
     IdSeparator: "",
     autocomplete : "",
@@ -237,29 +236,29 @@ RpCheckoutAutocomplete_shipping.method = {
                 types: ['establishment']
             });
         google.maps.event.addListener(this.autocomplete, 'place_changed', function( event ) {
-            RpCheckoutAutocomplete_shipping.method.fillInAddress()
+            YeCheckoutAutocomplete_shipping.method.fillInAddress()
         });
         var shipping_company = document.getElementById("shipping_company");
         if(shipping_company != null){
             shipping_company.addEventListener("focus", function( event ) {
-                RpCheckoutAutocomplete_shipping.method.setAutocompleteCountry()
+                YeCheckoutAutocomplete_shipping.method.setAutocompleteCountry()
             }, true);
         }
 
         var shipping_address = document.getElementById("shipping_address_1");
         if(shipping_address != null){
             shipping_address.addEventListener("focus", function( event ) {
-                RpCheckoutAutocomplete_shipping.method.setAutocompleteCountry()
+                YeCheckoutAutocomplete_shipping.method.setAutocompleteCountry()
             }, true);
         }
 
         var shipping_country = document.getElementById("shipping_country");
         if(shipping_country != null){
             shipping_country.addEventListener("change", function( event ) {
-                RpCheckoutAutocomplete_shipping.method.setAutocompleteCountry()
+                YeCheckoutAutocomplete_shipping.method.setAutocompleteCountry()
             }, true);
         }
-       
+
 
     },
     getIdSeparator : function() {
@@ -285,7 +284,7 @@ RpCheckoutAutocomplete_shipping.method = {
             'postal_code': ['shipping_postcode', 'short_name']
         };
     },
-    
+
     fillInAddress : function () {
         this.clearFormValues();
         var place = this.autocomplete.getPlace();
@@ -303,7 +302,7 @@ RpCheckoutAutocomplete_shipping.method = {
                         {
                             this.streetNumber = place.address_components[field]['short_name'];
                         }else{
-                            
+
                             if(document.getElementById("shipping_country").value=="KR"){
                                 this.streetNumber=place.address_components[0]['short_name'];
                                 this.streetNumber+=","+place.address_components[1]['long_name'];
@@ -322,8 +321,8 @@ RpCheckoutAutocomplete_shipping.method = {
 
         this.appendStreetNumber();
         this.fillForm();
-        
-        
+
+
         $=jQuery.noConflict();
         $("#shipping_state").trigger("change");
         if(typeof  FireCheckout !== 'undefined')
@@ -362,15 +361,15 @@ RpCheckoutAutocomplete_shipping.method = {
                 {
                     document.getElementById((f)).value = this.formFieldsValue[f];
                 }
-              
+
             }
-        } 
+        }
     },
     selectRegion:function (id,regionText)
     {
         if(document.getElementById((id)) == null){
             return false;
-        } 
+        }
         var el = document.getElementById((id));
         for(var i=0; i<el.options.length; i++) {
             if ( el.options[i].text == regionText ) {
@@ -383,7 +382,7 @@ RpCheckoutAutocomplete_shipping.method = {
     {
         if(document.getElementById(('shipping_address_2')) !== null){
             document.getElementById(('shipping_address_2')).value = '';
-        }   
+        }
     },
 
 
@@ -404,6 +403,6 @@ RpCheckoutAutocomplete_shipping.method = {
 
 
 window.addEventListener('load', function(){
-    RpCheckoutAutocomplete.method.initialize();
-    RpCheckoutAutocomplete_shipping.method.initialize();
+    YeCheckoutAutocomplete.method.initialize();
+    YeCheckoutAutocomplete_shipping.method.initialize();
 });
