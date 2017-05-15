@@ -3,7 +3,7 @@ Contributors: yosefeliezrie, magerips
 Tags: WooCommerce,Checkout,Address Autosuggestion,Address AutoComplete, Checkout Address, WooCommerce Address Autocomplete,Google Address
 Requires at least: 3.0.0
 Tested up to: 4.7.4
-Stable tag: 1.4
+Stable tag: 1.4.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/quick-guide-gplv3.html
 

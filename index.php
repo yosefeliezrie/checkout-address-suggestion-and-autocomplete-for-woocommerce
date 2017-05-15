@@ -5,7 +5,7 @@
   Author: yosefeliezrie, Magerips
   Author URI: https://github.com/yosefeliezrie
   Plugin URI: https://github.com/yosefeliezrie/checkout-address-suggestion-and-autocomplete-for-woocommerce
-  Version: 1.3
+  Version: 1.4.1
   Requires at least: 3.0.0
   Tested up to: 4.7.4
  */
