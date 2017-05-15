@@ -28,6 +28,7 @@ class ye_checkout_address_suggestion {
 
 
     public function wp_head() {
+      global $ye_gm_apikey;
         if(!is_checkout())
             return;
 
